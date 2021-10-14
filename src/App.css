@@ -47,7 +47,6 @@ a:hover {
   background-color: #001529;
   display: flex;
   padding: 20px;
-  align-items: center;
   width: 100%;
 }
 .logo {
@@ -55,7 +54,6 @@ a:hover {
 }
 .logo a {
   color: white;
-  text-decoration: none;
 }
 .menu-control-container {
   display: none !important;
