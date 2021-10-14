@@ -9,7 +9,7 @@ import { Cryptocurrencies, News } from '../components';
 const { Title } = Typography;
 
 const Homepage = () => {
-  const { data, isFetching } = useGetCryptosQuery();
+  const { data, isFetching } = useGetCryptosQuery(10);
   const globalStats = data?.data?.stats;
 
   if (isFetching) return 'Loading';
@@ -30,8 +30,10 @@ const Homepage = () => {
           />
         </Col>
         <Col span={12}>
-          title="Total Market Cap"
-          <Statistic value={millify(globalStats.totalMarketCap)} />
+          <Statistic
+            title="Total Market Cap"
+            value={millify(globalStats.totalMarketCap)}
+          />
         </Col>
         <Col span={12}>
           <Statistic
