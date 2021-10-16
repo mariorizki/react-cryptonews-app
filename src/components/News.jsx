@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { Select, Typography, Row, Col, Avatar, Card } from 'antd';
 import moment from 'moment';
 
 import { useGetCryptoNewsQuery } from '../services/cryptoNewsApi';
-import {useGetCryptosQuery} from '../services/cryptoApi'
+import { useGetCryptosQuery } from '../services/cryptoApi';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -16,10 +16,9 @@ const News = ({ simplified }) => {
   const { data } = useGetCryptosQuery(100);
   const { data: cryptoNews } = useGetCryptoNewsQuery({
     newsCategory,
-    count: simplified ? 6 : 12
+    count: simplified ? 6 : 12,
   });
   if (!cryptoNews?.value) return 'Loading...';
-  console.log(cryptoNews);
 
   return (
     <Row gutter={[24, 24]}>
@@ -27,14 +26,19 @@ const News = ({ simplified }) => {
         <Col span={24}>
           <Select
             showSearch
-            className='select-news'
+            className="select-news"
             placeholder="Select a Crypto"
             optionFilterProp="children"
             onChange={(value) => setNewsCategory(value)}
-            filterOption={(input, option) => option.children.toLowerCase().indexOf(input.toLowerCase())}>
-              <Option value="Cryptocurrency">Cryptocurrency</Option>
-              {data?.data?.coins.map((coin) => <Option value={coin.name}>{coin.name}</Option>)}
-            </Select>
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
+          >
+            <Option value="Cryptocurency">Cryptocurrency</Option>
+            {data?.data?.coins?.map((currency) => (
+              <Option value={currency.name}>{currency.name}</Option>
+            ))}
+          </Select>
         </Col>
       )}
       {cryptoNews.value.map((news, i) => (
@@ -42,33 +46,34 @@ const News = ({ simplified }) => {
           <Card hoverable className="news-card">
             <a href={news.url} target="_blank" rel="noreferrer">
               <div className="news-image-container">
-                <Title className="news-Title" level={4}>
+                <Title className="news-title" level={4}>
                   {news.name}
                 </Title>
                 <img
-                  style={{ maxWidth: '200px', maxHeight: '100px' }}
                   src={news?.image?.thumbnail?.contentUrl || demoImage}
-                  alt="news"
+                  alt=""
                 />
               </div>
               <p>
-                {news.description > 100
+                {news.description.length > 100
                   ? `${news.description.substring(0, 100)}...`
                   : news.description}
               </p>
               <div className="provider-container">
-                <Avatar
-                  style={{ maxWidth: '24px', maxHeight: '24px' }}
-                  src={
-                    news.provider[0]?.image?.thumbnail?.contentUrl || demoImage
-                  }
-                  alt="news"
-                />
-                <Text className="provider-name">{news.provider[0]?.name}</Text>
+                <div>
+                  <Avatar
+                    src={
+                      news.provider[0]?.image?.thumbnail?.contentUrl ||
+                      demoImage
+                    }
+                    alt=""
+                  />
+                  <Text className="provider-name">
+                    {news.provider[0]?.name}
+                  </Text>
+                </div>
                 <Text>
-                  {moment(news.datePublished)
-                    .startOf('ss')
-                    .fromNow()}
+                  {moment(news.datePublished).startOf('ss').fromNow()}
                 </Text>
               </div>
             </a>

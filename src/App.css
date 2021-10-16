@@ -62,6 +62,7 @@ a:hover {
   top: 25px !important;
   font-size: 1.2rem !important;
   background-color: rgb(0, 21, 41) !important;
+  color: #fff !important;
   border: none !important;
 }
 
@@ -278,6 +279,12 @@ a:hover {
   .coin-detail-container {
     margin: 0;
   }
+  .home-title {
+    font-size: 16px !important;
+  }
+  .show-more {
+    font-size: 16px !important;
+  }
 }
 @media screen and (max-width: 500px) {
   .heading {
@@ -339,8 +346,8 @@ a:hover {
 }
 .home-heading-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between !important;
+  align-items: center !important;
   margin-top: 40px;
 }
 .show-more {

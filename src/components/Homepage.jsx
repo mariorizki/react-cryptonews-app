@@ -17,9 +17,9 @@ const Homepage = () => {
   return (
     <>
       <Title level={2} className="heading">
-        Global Crypto Stats{' '}
+        Global Crypto Stats
       </Title>
-      <Row>
+      <Row gutter={[32, 32]}>
         <Col span={12}>
           <Statistic title="Total Cryptocurrencies" value={globalStats.total} />
         </Col>
@@ -31,15 +31,18 @@ const Homepage = () => {
         </Col>
         <Col span={12}>
           <Statistic
-            title="Total Market Cap"
-            value={millify(globalStats.totalMarketCap)}
+            title="Total Market Cap:"
+            value={`$${millify(globalStats.totalMarketCap)}`}
           />
         </Col>
         <Col span={12}>
           <Statistic
-            title="Total 24h volume"
-            value={millify(globalStats.total24hVolume)}
+            title="Total 24h Volume"
+            value={`$${millify(globalStats.total24hVolume)}`}
           />
+        </Col>
+        <Col span={12}>
+          <Statistic title="Total Cryptocurrencies" value={globalStats.total} />
         </Col>
         <Col span={12}>
           <Statistic
@@ -50,10 +53,10 @@ const Homepage = () => {
       </Row>
       <div className="home-heading-container">
         <Title level={2} className="home-title">
-          Top 10 Cryptocurrencies in the world
+          Top 10 Cryptos In The World
         </Title>
         <Title level={3} className="show-more">
-          <Link to="/cryptocurrencies">Show More</Link>
+          <Link to="/cryptocurrencies">Show more</Link>
         </Title>
       </div>
       <Cryptocurrencies simplified />
@@ -61,7 +64,7 @@ const Homepage = () => {
         <Title level={2} className="home-title">
           Latest Crypto News
         </Title>
-        <Title level={3}>
+        <Title level={3} className="show-more">
           <Link to="/news">Show more</Link>
         </Title>
       </div>
